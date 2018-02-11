@@ -77,6 +77,12 @@ var wire2= new THREE.Mesh( wiregeom2, wiremat2 );
 
 scene.add( wire2 );
 
+var planeGeom = new THREE.PlaneGeometry(2, 2)
+var planeMat = new THREE.MeshBasicMaterial({ color: '#FFFFFF' });
+var plane = new THREE.Mesh(planeGeom, planeMat);
+
+scene.add(plane);
+
 var gui = new dat.GUI();
 var c_mesh_size = gui.add(controls, 'size', 0,2);
 var c_mesh_color = gui.addColor(controls, 'color', 0,100);
@@ -90,9 +96,15 @@ c_mesh_color.onChange(function(){
   cube1.material = new THREE.MeshBasicMaterial( { color: controls.color } );
 });
 
+var delta = 0
+
 // Render Loop
 var render = function () {
   requestAnimationFrame( render );
+  
+  delta += 0.1;
+  planeGeom.vertices[0].x = -0.5 + Math.sin(delta) * 2;
+  planeGeom.verticesNeedUpdate = true;
 
   cube1.rotation.x += 0.01;
   cube1.rotation.y += 0.01;
