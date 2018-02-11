@@ -1,4 +1,4 @@
-/* global THREE */
+/* global THREE, dat .GUI */
 
 // ------------------------------------------------
 // BASIC SETUP
@@ -27,9 +27,28 @@ document.body.appendChild( renderer.domElement );
 // FUN STARTS HERE
 // ------------------------------------------------
 
+// Define controlable box
+var controls = {
+  size: 1,
+  color: '#433F50'
+}
+
+var gui = new dat.GUI();
+var c_mesh_size = gui.add(controls, 'size', 0,2);
+var c_mesh_color = gui.addColor(controls, 'color', 0,100);
+
+
+c_mesh_size.onChange(function(){
+  cube1.geometry = new THREE.OctahedronGeometry(controls.size, 0);
+});
+
+c_mesh_color.onChange(function(){
+  mesh.material = new THREE.MeshStandardMaterial( { color: controls.color } );
+});
+
 // Create a Cube Mesh with basic material
-var cubegeom1 = new THREE.BoxGeometry( 1, 1, 1 );
-var cubemat1 = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+var cubegeom1 = new THREE.BoxGeometry( controls.size, controls.size, controls.size );
+var cubemat1 = new THREE.MeshBasicMaterial( { color: controls.color } );
 var cube1 = new THREE.Mesh( cubegeom1, cubemat1 );
 
 // Add cube to Scene
@@ -44,7 +63,7 @@ scene.add( cube2 );
 
 //Create animated X
 var greenLongGeom = new THREE.BoxGeometry( 200, 0.1, 0.1 );
-var greenLongMat = new THREE.MeshBasicMaterial( { color: "green" } );
+var greenLongMat = new THREE.MeshBasicMaterial( { color: "#42f4ad" } );
 var greenLong = new THREE.Mesh(greenLongGeom, greenLongMat);
 
 scene.add( greenLong );
