@@ -28,19 +28,37 @@ document.body.appendChild( renderer.domElement );
 // ------------------------------------------------
 
 // Create a Cube Mesh with basic material
-var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
-var cube = new THREE.Mesh( geometry, material );
+var cubegeom1 = new THREE.BoxGeometry( 1, 1, 1 );
+var cubemat1 = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+var cube1 = new THREE.Mesh( cubegeom1, cubemat1 );
 
 // Add cube to Scene
-scene.add( cube );
+scene.add( cube1 );
+
+//Create second Cube
+var cubegeom2 = new THREE.BoxGeometry( 1, 1, 1 );
+var cubemat2 = new THREE.MeshBasicMaterial( { color: "#433F50" } );
+var cube2= new THREE.Mesh( cubegeom2, cubemat2 );
+
+scene.add( cube2 );
+
+//Crate animated X
+var greenLongGeom = new THREE.BoxGeometry( 200, 1, 1 );
+var greenLongMat = new THREE.MeshBasicMaterial( { color: "white" } );
+var greenLong = new THREE.Mesh(greenLongGeom, greenLongMat);
+
+scene.add( greenLong )M
+
 
 // Render Loop
 var render = function () {
   requestAnimationFrame( render );
 
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  cube1.rotation.x += 0.01;
+  cube1.rotation.y += 0.01;
+  
+  cube2.rotation.x += -0.01;
+  cube2.rotation.y += -0.01;
 
   // Render the scene
   renderer.render(scene, camera);
