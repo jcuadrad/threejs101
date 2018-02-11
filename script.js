@@ -42,12 +42,34 @@ var cube2= new THREE.Mesh( cubegeom2, cubemat2 );
 
 scene.add( cube2 );
 
-//Crate animated X
-var greenLongGeom = new THREE.BoxGeometry( 200, 1, 1 );
-var greenLongMat = new THREE.MeshBasicMaterial( { color: "white" } );
+//Create animated X
+var greenLongGeom = new THREE.BoxGeometry( 200, 0.1, 0.1 );
+var greenLongMat = new THREE.MeshBasicMaterial( { color: "green" } );
 var greenLong = new THREE.Mesh(greenLongGeom, greenLongMat);
 
-scene.add( greenLong )M
+scene.add( greenLong );
+
+//Create animated X
+var whiteLongGeom = new THREE.BoxGeometry( 200, 0.1, 0.1 );
+var whiteLongMat = new THREE.MeshBasicMaterial( { color: "white" } );
+var whiteLong = new THREE.Mesh(whiteLongGeom, whiteLongMat);
+
+scene.add( whiteLong );
+
+// Create a Cube Mesh with basic material
+var wiregeom1 = new THREE.BoxGeometry( 6, 6, 6 );
+var wiremat1 = new THREE.MeshBasicMaterial( { color: "#433F81", wireframe: true } );
+var wire1 = new THREE.Mesh( wiregeom1, wiremat1 );
+
+// Add wire to Scene
+scene.add( wire1 );
+
+//Create second Cube
+var wiregeom2 = new THREE.BoxGeometry( 6, 6, 6 );
+var wiremat2 = new THREE.MeshBasicMaterial( { color: "#433F50", wireframe: true } );
+var wire2= new THREE.Mesh( wiregeom2, wiremat2 );
+
+scene.add( wire2 );
 
 
 // Render Loop
@@ -59,6 +81,15 @@ var render = function () {
   
   cube2.rotation.x += -0.01;
   cube2.rotation.y += -0.01;
+  
+  greenLong.rotation.z += 0.01;
+  whiteLong.rotation.z += -0.01;
+  
+  wire1.rotation.x += 0.01;
+  wire1.rotation.y += 0.01;
+  
+  wire2.rotation.x += -0.01;
+  wire2.rotation.y += -0.01;
 
   // Render the scene
   renderer.render(scene, camera);
