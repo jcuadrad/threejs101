@@ -30,21 +30,8 @@ document.body.appendChild( renderer.domElement );
 // Define controlable box
 var controls = {
   size: 1,
-  color: '#433F50'
+  color: '#433F81'
 }
-
-var gui = new dat.GUI();
-var c_mesh_size = gui.add(controls, 'size', 0,2);
-var c_mesh_color = gui.addColor(controls, 'color', 0,100);
-
-
-c_mesh_size.onChange(function(){
-  cube1.geometry = new THREE.OctahedronGeometry(controls.size, 0);
-});
-
-c_mesh_color.onChange(function(){
-  mesh.material = new THREE.MeshStandardMaterial( { color: controls.color } );
-});
 
 // Create a Cube Mesh with basic material
 var cubegeom1 = new THREE.BoxGeometry( controls.size, controls.size, controls.size );
@@ -90,6 +77,18 @@ var wire2= new THREE.Mesh( wiregeom2, wiremat2 );
 
 scene.add( wire2 );
 
+var gui = new dat.GUI();
+var c_mesh_size = gui.add(controls, 'size', 0,2);
+var c_mesh_color = gui.addColor(controls, 'color', 0,100);
+
+
+c_mesh_size.onChange(function(){
+  cube1.geometry = new THREE.OctahedronGeometry(controls.size, 0);
+});
+
+c_mesh_color.onChange(function(){
+  cube1.material = new THREE.MeshBasicMaterial( { color: controls.color } );
+});
 
 // Render Loop
 var render = function () {
