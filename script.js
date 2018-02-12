@@ -102,8 +102,9 @@ var delta = 0
 var render = function () {
   requestAnimationFrame( render );
   
-  delta += 0.1;
-  planeGeom.vertices[0].x = -0.5 + Math.sin(delta) * 2;
+  delta += 0.01;
+  planeGeom.vertices[3].x = 1 + Math.sin(delta) * 1;
+  planeGeom.vertices[0].x = -1 + Math.sin(delta) * -1;
   planeGeom.verticesNeedUpdate = true;
 
   cube1.rotation.x += 0.01;
